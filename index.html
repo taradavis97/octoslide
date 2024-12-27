@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OctoSlide.com</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000; /* Optional background color */
+    }
+
+    canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+</style>
+<script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+</head>
+<body>
+<canvas id="riveCanvas"></canvas>
+<script>
+    // Initialize Rive
+    const riveInstance = new rive.Rive({
+        src: 'octoslide.riv', // Ensure this file is in the same directory or update the path
+        canvas: document.getElementById('riveCanvas'),
+        autoplay: true,
+        artboard: 'Artboard', // Specify the correct artboard name if different
+        stateMachines: ['State Machine 1'], // Ensure this state machine exists in your Rive file
+        onLoad: () => {
+            riveInstance.resizeDrawingSurfaceToCanvas(); // Ensure the canvas is resized to fit the screen
+        }
+    });
+
+    // Adjust canvas size on window resize
+    window.addEventListener('resize', () => {
+        riveInstance.resizeDrawingSurfaceToCanvas();
+    });
+</script>
+</body>
+</html>
