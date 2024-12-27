@@ -29,15 +29,20 @@
 <script>
     // Initialize Rive
     const riveInstance = new rive.Rive({
-        src: 'octoslide.riv', // Ensure this file is in the same directory or update the path
-        canvas: document.getElementById('riveCanvas'),
-        autoplay: true,
-        artboard: 'Artboard', // Specify the correct artboard name if different
-        stateMachines: ['State Machine 1'], // Ensure this state machine exists in your Rive file
-        onLoad: () => {
-            riveInstance.resizeDrawingSurfaceToCanvas(); // Ensure the canvas is resized to fit the screen
-        }
-    });
+    src: 'public/octoslide.riv',
+    canvas: document.getElementById('riveCanvas'),
+    autoplay: true,
+    artboard: 'Artboard', // Update this if your artboard has a different name
+    stateMachines: 'State Machine 1', // Update this if your state machine has a different name
+    onLoad: () => {
+        console.log('Rive file loaded successfully');
+        riveInstance.resizeDrawingSurfaceToCanvas();
+    },
+    onError: (error) => {
+        console.error('Error loading Rive file:', error);
+    }
+});
+
 
     // Adjust canvas size on window resize
     window.addEventListener('resize', () => {
